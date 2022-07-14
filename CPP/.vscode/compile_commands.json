@@ -1,0 +1,6 @@
+[
+{
+  "directory": "c:\\Users\\carbene\\Projects\\misc\\CPP",
+  "arguments": ["clang-cl.exe", "-c", "-std:c++17", "-DPRECISION_32", "-D_CRT_SECURE_NO_WARNINGS", "-Fobuild\\.objs\\crtp\\windows\\x64\\debug\\crtp.cpp.obj", "crtp.cpp"],
+  "file": "crtp.cpp"
+}]
