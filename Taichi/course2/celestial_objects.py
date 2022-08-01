@@ -5,6 +5,10 @@ G = 1
 PI = 3.1415926
 
 
+def hex2rgb(hex_color: int):
+    return (((hex_color >> 16) & 0xff) / 255.0, ((hex_color >> 8) & 0xff) / 255.0, (hex_color & 0xff) / 255.0)
+
+
 @ti.data_oriented
 class CelestialObject:
     def __init__(self, N, mass) -> None:
@@ -15,8 +19,8 @@ class CelestialObject:
         self.vel = ti.Vector.field(2, ti.f32, shape=self.n)
         self.force = ti.Vector.field(2, ti.f32, shape=self.n)
 
-    def display(self, gui, radius=2, color=0xffffff):
-        gui.circles(self.pos.to_numpy(), radius=radius, color=color)
+    def display(self, canvas: ti.ui.Canvas, radius=2, color=0xffffff):
+        canvas.circles(self.pos, radius / 800, hex2rgb(color))
 
     @ti.func
     def Pos(self):
