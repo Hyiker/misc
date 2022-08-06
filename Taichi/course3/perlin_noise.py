@@ -1,5 +1,6 @@
 import taichi as ti
 import numpy as np
+import math
 from time import time
 ti.init(arch=ti.cuda, debug=True)
 
@@ -137,11 +138,11 @@ def render(t: ti.f32):
     for x, y in pixels:
         noise_val_sum = 0.0
         p = 1.0
-        for i in range(16):
-            pn = perlin_noise(p * x, p * y, t) / p
-            noise_val_sum += pn
-            p *= 2.0
-        pixels[x, y] = (noise_val_sum + 1.0) / 2.0
+        for _ in range(7):
+            pn = perlin_noise(x / p, y / p, t) * p
+            noise_val_sum += ti.abs(pn)
+            p /= 2.0
+        pixels[x, y] = noise_val_sum
 
 
 if __name__ == '__main__':
