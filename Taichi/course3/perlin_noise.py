@@ -146,16 +146,15 @@ def render(t: ti.f32):
 
 
 if __name__ == '__main__':
-    window = ti.ui.Window('Perlin Noise', window_size)
+    window = ti.ui.Window('Perlin Noise', window_size, vsync=True)
     canvas = window.get_canvas()
     t = 0.0
-    last_time = float(time())
     while window.running:
-        now_time = float(time())
-        delta_time = now_time - last_time
-        t += delta_time
-        last_time = now_time
+        t += 0.0166666667
 
         render(t * 40.0)
         canvas.set_image(pixels)
+        if window.get_event(ti.ui.PRESS):
+            if window.event.key == 's':
+                window.write_image('perlin_noise.png')
         window.show()
