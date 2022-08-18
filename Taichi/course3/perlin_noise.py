@@ -153,7 +153,7 @@ if __name__ == '__main__':
         t += 0.0166666667
 
         render(t * 40.0)
-        canvas.set_image(pixels)
+        canvas.set_image(pixels.to_numpy())
         if window.get_event(ti.ui.PRESS):
             if window.event.key == 's':
                 window.write_image('perlin_noise.png')
